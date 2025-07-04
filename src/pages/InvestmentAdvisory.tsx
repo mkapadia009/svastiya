@@ -4,8 +4,11 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { PieChart, Briefcase, Building2, Coins, TrendingUp, Users, Target, Shield, Star, Globe } from "lucide-react";
+import { useState } from "react";
+import InquiryModal from "@/components/formcomponent/inqueryform";
 
 const InvestmentAdvisory = () => {
+  const [open, setOpen] = useState(false)
   const services = [
     {
       icon: PieChart,
@@ -77,13 +80,14 @@ const InvestmentAdvisory = () => {
             investment strategies that help you achieve your financial aspirations.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="bg-teal-600 hover:bg-teal-700">
+            <Button size="lg" className="bg-teal-600 hover:bg-teal-700" onClick={() => setOpen(true)}>
               <Target className="mr-2 h-5 w-5" />
               Start Your Investment Journey
             </Button>
             <Button size="lg" variant="outline">
               Download Investment Guide
             </Button>
+            <InquiryModal open={open} handleClose={() => setOpen(false)} />
           </div>
         </div>
       </section>
@@ -206,12 +210,12 @@ const InvestmentAdvisory = () => {
             Let's create a personalized investment strategy that aligns with your financial goals.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" variant="secondary" className="bg-white text-teal-600 hover:bg-gray-100">
+            <Button size="lg" variant="secondary" className="bg-white text-teal-600 hover:bg-gray-100" onClick={() => setOpen(true)}>
               Schedule Consultation
             </Button>
-            <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-teal-600">
+            {/* <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-teal-600">
               Request Portfolio Review
-            </Button>
+            </Button> */}
           </div>
         </div>
       </section>

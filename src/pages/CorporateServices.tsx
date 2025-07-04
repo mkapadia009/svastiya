@@ -4,8 +4,11 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import Navigation from "@/components/Navigation";
 import { Building2, TrendingUp, DollarSign, Users, Target, Briefcase, BarChart3, Shield, Zap, Globe } from "lucide-react";
+import InquiryModal from "@/components/formcomponent/inqueryform";
+import { useState } from "react";
 
 const CorporateServices = () => {
+  const [open, setOpen] = useState(false)
   const services = [
     {
       icon: Building2,
@@ -77,13 +80,13 @@ const CorporateServices = () => {
             enterprise-level transactions. We partner with companies at every stage of growth.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="bg-teal-600 hover:bg-teal-700">
+            <Button size="lg" className="bg-teal-600 hover:bg-teal-700" onClick={() => setOpen(true)}>
               <Briefcase className="mr-2 h-5 w-5" />
               Schedule Consultation
             </Button>
-            <Button size="lg" variant="outline">
+            {/* <Button size="lg" variant="outline">
               View Case Studies
-            </Button>
+            </Button> */}
           </div>
         </div>
       </section>
@@ -206,12 +209,13 @@ const CorporateServices = () => {
             Let's discuss how our corporate advisory services can help your business reach its next milestone.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" variant="secondary" className="bg-white text-teal-600 hover:bg-gray-100">
+            <Button size="lg" variant="secondary" className="bg-white text-teal-600 hover:bg-gray-100" onClick={() => setOpen(true)}>
               Schedule a Meeting
             </Button>
-            <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-teal-600">
+            {/* <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-teal-600">
               Download Our Brochure
-            </Button>
+            </Button> */}
+            <InquiryModal open={open} handleClose={() => setOpen(false)} />
           </div>
         </div>
       </section>

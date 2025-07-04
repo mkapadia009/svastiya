@@ -4,8 +4,11 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Building2, TrendingUp, Coins, Factory, Landmark, ChartBar, Download, ExternalLink } from "lucide-react";
+import { useState } from "react";
+import InquiryModal from "@/components/formcomponent/inqueryform";
 
 const Knowledge = () => {
+  const [open, setOpen] = useState(false)
   const investmentProducts = [
     {
       icon: Building2,
@@ -171,7 +174,7 @@ const Knowledge = () => {
                   </div>
                   
                   <div className="flex gap-2 pt-4">
-                    <Button size="sm" className="bg-teal-600 hover:bg-teal-700">
+                    <Button size="sm" className="bg-teal-600 hover:bg-teal-700" onClick={() => setOpen(true)}>
                       Learn More
                       <ExternalLink className="ml-2 h-4 w-4" />
                     </Button>
@@ -179,6 +182,7 @@ const Knowledge = () => {
                       Download Factsheet
                       <Download className="ml-2 h-4 w-4" />
                     </Button>
+                    <InquiryModal open={open} handleClose={() => setOpen(false)} />
                   </div>
                 </CardContent>
               </Card>
@@ -254,12 +258,12 @@ const Knowledge = () => {
             and build a diversified portfolio tailored to your goals.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="bg-white text-teal-600 hover:bg-gray-50">
+            <Button size="lg" className="bg-white text-teal-600 hover:bg-gray-50" onClick={() => setOpen(true)}>
               Schedule Consultation
             </Button>
-            <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-teal-600">
+            {/* <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-teal-600">
               Download Investment Guide
-            </Button>
+            </Button> */}
           </div>
         </div>
       </section>
