@@ -2,6 +2,7 @@
 import { Link, useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import AnimatedLogo from "./AnimatedLogo";
+import { ImageAssets } from "@/images/imageassets";
 
 const Navigation = () => {
   const location = useLocation();
@@ -19,8 +20,9 @@ const Navigation = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <Link to="/" className="flex items-center space-x-3">
-            <AnimatedLogo />
-            <span className="text-xl font-semibold text-teal-800">Svastiya Financial Services</span>
+            {/* <AnimatedLogo /> */}
+            <img src={ImageAssets.Svastiya} width={60} height={60}/>
+            <span className="text-xl font-semibold text-teal-800">Svastiya</span>
           </Link>
           
           <div className="hidden md:flex space-x-8">

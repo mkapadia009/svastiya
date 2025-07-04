@@ -11,7 +11,7 @@ const About = () => {
       <Navigation />
       <AboutHero />
       <CompanyStory />
-      <FoundersSection />
+      {/* <FoundersSection /> */}
       <ValuesSection />
     </div>
   );
