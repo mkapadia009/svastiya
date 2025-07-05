@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { PieChart, Briefcase, Building2, Coins, TrendingUp, Users, Target, Shield, Star, Globe } from "lucide-react";
 import { useState } from "react";
 import InquiryModal from "@/components/formcomponent/inqueryform";
+import Footer from "@/components/footer/footer";
 
 const InvestmentAdvisory = () => {
   const [open, setOpen] = useState(false)
@@ -219,6 +220,7 @@ const InvestmentAdvisory = () => {
           </div>
         </div>
       </section>
+      <Footer/>
     </div>
   );
 };

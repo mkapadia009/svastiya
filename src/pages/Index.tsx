@@ -168,7 +168,7 @@ const Index = () => {
             <div>
               <div className="flex items-center space-x-3 mb-4">
                 <img src={ImageAssets.Svastiya} width={60} height={60} />
-                <span className="text-lg font-semibold">Svastiya Financial Services</span>
+                <span className="text-lg font-semibold">Svastiya Financial Advisors LLP</span>
               </div>
               <p className="text-gray-400">
                 Growing wealth through expert guidance and sustainable investment strategies.

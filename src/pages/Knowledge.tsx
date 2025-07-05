@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Building2, TrendingUp, Coins, Factory, Landmark, ChartBar, Download, ExternalLink } from "lucide-react";
 import { useState } from "react";
 import InquiryModal from "@/components/formcomponent/inqueryform";
+import Footer from "@/components/footer/footer";
 
 const Knowledge = () => {
   const [open, setOpen] = useState(false)
@@ -267,6 +268,7 @@ const Knowledge = () => {
           </div>
         </div>
       </section>
+      <Footer/>
     </div>
   );
 };

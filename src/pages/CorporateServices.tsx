@@ -6,6 +6,7 @@ import Navigation from "@/components/Navigation";
 import { Building2, TrendingUp, DollarSign, Users, Target, Briefcase, BarChart3, Shield, Zap, Globe } from "lucide-react";
 import InquiryModal from "@/components/formcomponent/inqueryform";
 import { useState } from "react";
+import Footer from "@/components/footer/footer";
 
 const CorporateServices = () => {
   const [open, setOpen] = useState(false)
@@ -219,6 +220,7 @@ const CorporateServices = () => {
           </div>
         </div>
       </section>
+      <Footer/>
     </div>
   );
 };
