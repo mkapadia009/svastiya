@@ -64,15 +64,17 @@ const InquiryModal = ({
       message: formData.get('message'),
       time: currentTime,
       title: `New Inquiry from ${formData.get('name')}`,
-      to_email: 'juiyezarkar1999@gmail.com',
+      to_email: 'pd@traverse.ventures',
+      // To:'pd@traverse.ventures'
+
     }
 
     emailjs
       .send(
-        'service_we7871i',      // ✅ Your EmailJS service ID
-        'template_7dfp21h',     // ✅ Your EmailJS template ID
+        'service_e2a3fkf',      // ✅ Your EmailJS service ID
+        'template_wv4w42c',     // ✅ Your EmailJS template ID
         templateParams,
-        'jdquu2JsBD9vtDU8R'     // ✅ Your EmailJS public key
+        'W4wcc2N1SUtdrgImx'     // ✅ Your EmailJS public key
       )
       .then(
         () => {
