@@ -7,6 +7,7 @@ import { PieChart, Briefcase, Building2, Coins, TrendingUp, Users, Target, Shiel
 import { useState } from "react";
 import InquiryModal from "@/components/formcomponent/inqueryform";
 import Footer from "@/components/footer/footer";
+import { ImageAssets } from "@/images/imageassets";
 
 const InvestmentAdvisory = () => {
   const [open, setOpen] = useState(false)
@@ -50,14 +51,11 @@ const InvestmentAdvisory = () => {
   ];
 
   const investmentTypes = [
-    "Equity Markets",
-    "Fixed Income",
-    "Mutual Funds",
-    "Alternative Investments",
-    "International Markets",
-    "Commodities",
-    "Real Estate",
-    "Private Equity"
+    { title: "Mutual Funds", image: ImageAssets.MutualFund },
+    { title: "Equity Markets", image: ImageAssets.EquityMarket },
+    { title: "Fixed Income", image: ImageAssets.FixedIncome },
+    { title: "International Markets", image: ImageAssets.InternationalMarket },
+    { title: "Private Equity", image: ImageAssets.PrivateEquity }
   ];
 
   return (
@@ -145,15 +143,17 @@ const InvestmentAdvisory = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {investmentTypes.map((type, index) => (
-              <div key={index} className="text-center p-6 rounded-lg bg-white border border-teal-100 hover:border-teal-200 transition-all duration-300">
-                <div className="w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center mx-auto mb-4">
-                  <Globe className="h-6 w-6 text-teal-600" />
+          <div className="flex justify-center">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-8 max-w-4xl">
+              {investmentTypes.map((type, index) => (
+                <div key={index} className="text-center rounded-lg bg-white border border-teal-100 hover:border-teal-200 transition-all duration-300 shadow-sm px-8 py-6 md:px-12 md:py-6">
+                  <div className="w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center mx-auto mb-2">
+                    <img src={type.image} alt={type.title} className="h-6 w-6" />
+                  </div>
+                  <h3 className="font-semibold text-gray-900 text-lg">{type.title}</h3>
                 </div>
-                <h3 className="font-semibold text-gray-900">{type}</h3>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </section>
