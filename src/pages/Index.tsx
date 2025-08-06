@@ -168,22 +168,22 @@ const Index = () => {
         </div>
       </section>
 
-      <footer className="bg-gray-900 text-white py-12">
+      <footer className="bg-teal-600 text-white py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-3 gap-8">
             <div>
               <div className="flex items-center space-x-3 mb-4">
-                <img src={ImageAssets.Svastiya} width={60} height={60} alt="Svastiya Logo" />
+                <img src={ImageAssets.SvastiyaLogoWhite} width={80} height={80} alt="Svastiya Logo" />
                 <span className="text-lg font-semibold">Svastiya Financial Advisors LLP</span>
               </div>
-              <p className="text-gray-400">
+              <p className="text-white">
                 Growing wealth through expert guidance and sustainable investment strategies.
               </p>
             </div>
 
             <div>
               <h3 className="font-semibold mb-4">Contact Info</h3>
-              <div className="space-y-2 text-gray-400">
+              <div className="space-y-2 text-white">
                 <div className="flex items-center space-x-2">
                   <Mail className="h-4 w-4" />
                   <span>contact@svastiya.com</span>
@@ -202,20 +202,20 @@ const Index = () => {
             <div>
               <h3 className="font-semibold mb-4">Quick Links</h3>
               <div className="space-y-2">
-                <Link to="/about" state={{ fromRouter: true }} className="block text-gray-400 hover:text-white transition-colors">
+                <Link to="/about" state={{ fromRouter: true }} className="block text-white hover:font-semibold transition-colors">
                   About Us
                 </Link>
-                <Link to="/knowledge" state={{ fromRouter: true }} className="block text-gray-400 hover:text-white transition-colors">
+                <Link to="/knowledge" state={{ fromRouter: true }} className="block text-white hover:font-semibold transition-colors">
                   Knowledge Hub
                 </Link>
-                <a href="#" className="block text-gray-400 hover:text-white transition-colors">
+                <a href="#" className="block text-white hover:font-semibold transition-colors">
                   Contact
                 </a>
               </div>
             </div>
           </div>
 
-          <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+          <div className="border-t border-white mt-8 pt-8 text-center text-white">
             <p>&copy; 2025 Traverse TEC Labs. All rights reserved.</p>
           </div>
         </div>
