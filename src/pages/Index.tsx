@@ -1,18 +1,35 @@
-
 import Navigation from "@/components/Navigation";
 import HeroSection from "@/components/HeroSection";
+import LoadingScreen from "@/components/LoadingScreen";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { ArrowRight, Mail, Phone, MapPin, Building2, PieChart, TrendingUp, Users, Target, Briefcase } from "lucide-react";
-import { Link, useNavigate } from "react-router-dom";
+import { ArrowRight, Mail, Phone, MapPin, Building2, PieChart, TrendingUp, Users, Target } from "lucide-react";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { ImageAssets } from "@/images/imageassets";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import InquiryModal from "@/components/formcomponent/inqueryform";
-
+import { shouldShowLoading, setLoadingShown } from "@/lib/loadingState";
 
 const Index = () => {
+  const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
   
-  const [open, setOpen] = useState(false)
+  // Use global state that resets only on hard refresh
+  // Also check if this is a navigation from another route
+  const isFromNavigation = location.state?.fromRouter === true;
+  const [showLoading, setShowLoading] = useState(() => {
+    // Don't show loading if navigating from another page
+    if (isFromNavigation) return false;
+    // Otherwise use the global state logic
+    return shouldShowLoading();
+  });
+
+  const handleLoadingComplete = () => {
+    console.log("LoadingScreen completed");
+    setLoadingShown(); // Mark that loading has been shown
+    setShowLoading(false);
+  };
 
   const servicesSummary = [
     {
@@ -33,16 +50,14 @@ const Index = () => {
     }
   ];
 
-  const navigate = useNavigate()
- 
+  if (showLoading) {
+    return <LoadingScreen onComplete={handleLoadingComplete} />;
+  }
   return (
-    
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-teal-50">
       <Navigation />
       <HeroSection />
-
-      {/* Services Overview Section */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-gradient-to-br from-slate-50 to-teal-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
@@ -56,45 +71,38 @@ const Index = () => {
 
           <div className="grid lg:grid-cols-2 gap-12">
             {servicesSummary.map((service, index) => (
-                 <div
-          key={index}
-          onClick={() => navigate(service.link)}
-          className="cursor-pointer"
-        >
-              <Card key={index} className="border-2 hover:shadow-xl transition-all duration-300 bg-white">
-                <CardHeader className="text-center pb-6">
-                  <div className={`w-16 h-16 bg-${service.color}-100 rounded-full flex items-center justify-center mx-auto mb-4`}>
-                    <service.icon className={`h-8 w-8 text-${service.color}-600`} />
-                  </div>
-                  <CardTitle className="text-2xl text-gray-900">{service.title}</CardTitle>
-                  <CardDescription className="text-lg text-gray-600">
-                    {service.description}
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="space-y-6">
-                  <div className="grid grid-cols-2 gap-3">
-                    {service.features.map((feature, idx) => (
-                      <div key={idx} className="flex items-center text-sm text-gray-700">
-                        <div className={`w-2 h-2 bg-${service.color}-500 rounded-full mr-3`}></div>
-                        {feature}
-                      </div>
-                    ))}
-                  </div>
-                  {/* <Link to={service.link}>
-                    <Button className={`w-full bg-${service.color}-600 hover:bg-${service.color}-700`}>
-                      Learn More
-                      <ArrowRight className="ml-2 h-5 w-5" />
-                    </Button>
-                  </Link> */}
-                </CardContent>
-              </Card>
+              <div
+                key={index}
+                onClick={() => navigate(service.link, { state: { fromRouter: true } })}
+                className="cursor-pointer"
+              >
+                <Card className="border-2 hover:shadow-xl transition-all duration-300 bg-white">
+                  <CardHeader className="text-center pb-6">
+                    <div className={`w-16 h-16 bg-${service.color}-100 rounded-full flex items-center justify-center mx-auto mb-4`}>
+                      <service.icon className={`h-8 w-8 text-${service.color}-600`} />
+                    </div>
+                    <CardTitle className="text-2xl text-gray-900">{service.title}</CardTitle>
+                    <CardDescription className="text-lg text-gray-600">
+                      {service.description}
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent className="space-y-6">
+                    <div className="grid grid-cols-2 gap-3">
+                      {service.features.map((feature, idx) => (
+                        <div key={idx} className="flex items-center text-sm text-gray-700">
+                          <div className={`w-2 h-2 bg-${service.color}-500 rounded-full mr-3`}></div>
+                          {feature}
+                        </div>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Key Differentiators */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -137,23 +145,22 @@ const Index = () => {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-teal-600 to-teal-700">
+      <section className="py-20 bg-gradient-to-r from-[#F3FBFB] to-[#F3FBFB]">
         <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-          <h2 className="text-4xl font-bold text-white mb-6">
+          <h2 className="text-4xl font-bold text-teal-600 mb-6">
             Ready to Start Your Financial Journey?
           </h2>
-          <p className="text-xl text-teal-100 mb-8">
+          <p className="text-xl text-teal-600 mb-8">
             Join hundreds of satisfied clients who trust Svastiya for their financial growth.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link to="/about">
+            <Link to="/about" state={{ fromRouter: true }}>
               {/* <Button size="lg" className="bg-white text-teal-600 hover:bg-gray-50">
                 Meet Our Team
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button> */}
             </Link>
-            <Button size="lg" variant="outline" className="bg-white text-teal-600 " onClick={() => setOpen(true)}>
+            <Button size="lg" variant="outline" className="bg-teal-600 text-white hover:bg-teal-700 hover:text-white" onClick={() => setOpen(true)}>
               Schedule Consultation
             </Button>
             <InquiryModal open={open} handleClose={() => setOpen(false)} />
@@ -161,23 +168,22 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="bg-gray-900 text-white py-12">
+      <footer className="bg-teal-600 text-white py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-3 gap-8">
             <div>
               <div className="flex items-center space-x-3 mb-4">
-                <img src={ImageAssets.Svastiya} width={60} height={60} />
+                <img src={ImageAssets.SvastiyaLogoWhite} width={80} height={80} alt="Svastiya Logo" />
                 <span className="text-lg font-semibold">Svastiya Financial Advisors LLP</span>
               </div>
-              <p className="text-gray-400">
+              <p className="text-white">
                 Growing wealth through expert guidance and sustainable investment strategies.
               </p>
             </div>
 
             <div>
               <h3 className="font-semibold mb-4">Contact Info</h3>
-              <div className="space-y-2 text-gray-400">
+              <div className="space-y-2 text-white">
                 <div className="flex items-center space-x-2">
                   <Mail className="h-4 w-4" />
                   <span>contact@svastiya.com</span>
@@ -196,20 +202,20 @@ const Index = () => {
             <div>
               <h3 className="font-semibold mb-4">Quick Links</h3>
               <div className="space-y-2">
-                <Link to="/about" className="block text-gray-400 hover:text-white transition-colors">
+                <Link to="/about" state={{ fromRouter: true }} className="block text-white hover:font-semibold transition-colors">
                   About Us
                 </Link>
-                <Link to="/knowledge" className="block text-gray-400 hover:text-white transition-colors">
+                <Link to="/knowledge" state={{ fromRouter: true }} className="block text-white hover:font-semibold transition-colors">
                   Knowledge Hub
                 </Link>
-                <a href="#" className="block text-gray-400 hover:text-white transition-colors">
+                <a href="#" className="block text-white hover:font-semibold transition-colors">
                   Contact
                 </a>
               </div>
             </div>
           </div>
 
-          <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+          <div className="border-t border-white mt-8 pt-8 text-center text-white">
             <p>&copy; 2025 Traverse TEC Labs. All rights reserved.</p>
           </div>
         </div>
