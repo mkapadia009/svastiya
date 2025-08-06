@@ -5,12 +5,18 @@ import { Badge } from "@/components/ui/badge";
 import Navigation from "@/components/Navigation";
 import { Building2, TrendingUp, DollarSign, Users, Target, Briefcase, BarChart3, Shield, Zap } from "lucide-react";
 import InquiryModal from "@/components/formcomponent/inqueryform";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Footer from "@/components/footer/footer";
 import { ImageAssets } from "@/images/imageassets";
+import { setLoadingShown } from "@/lib/loadingState";
 
 const CorporateServices = () => {
   const [open, setOpen] = useState(false)
+  
+  // Mark loading as shown since we're on a different page
+  useEffect(() => {
+    setLoadingShown();
+  }, []);
   const services = [
     {
       icon: Building2,
@@ -202,16 +208,16 @@ const CorporateServices = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-teal-600">
+      <section className="py-20 bg-[#FBFDFD]">
         <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-          <h2 className="text-4xl font-bold text-white mb-6">
+          <h2 className="text-4xl font-bold text-teal-600 mb-6">
             Ready to Accelerate Your Growth?
           </h2>
-          <p className="text-xl text-teal-100 mb-8">
+          <p className="text-xl text-teal-600 mb-8">
             Let's discuss how our corporate advisory services can help your business reach its next milestone.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" variant="secondary" className="bg-white text-teal-600 hover:bg-gray-100" onClick={() => setOpen(true)}>
+            <Button size="lg" variant="secondary" className="bg-teal-600 text-white hover:bg-teal-700 hover:text-white" onClick={() => setOpen(true)}>
               Schedule a Meeting
             </Button>
             {/* <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-teal-600">

@@ -34,7 +34,7 @@ const PartnersSection = () => {
         
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 items-center justify-items-center max-w-5xl mx-auto">
           {partners.map((partner, index) => (
-            <div key={index} className="bg-white rounded-xl p-6 shadow-sm border border-[#CDF9EF]-100 hover:shadow-md transition-shadow duration-300 w-full h-32 flex items-center justify-center group">
+            <div key={index} className="bg-white rounded-xl p-6 shadow-sm border border-[#CDF9EF] hover:shadow-md transition-shadow duration-300 w-full h-32 flex items-center justify-center group">
               <img 
                 src={partner.logo} 
                 alt={partner.alt}

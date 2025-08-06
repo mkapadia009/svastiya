@@ -1,6 +1,16 @@
 import { ImageAssets } from "@/images/imageassets";
+import { useState } from "react";
 
 const AdvisorsSection = () => {
+  const [expandedCards, setExpandedCards] = useState<number[]>([]);
+
+  const toggleCard = (index: number) => {
+    setExpandedCards(prev => 
+      prev.includes(index) 
+        ? prev.filter(i => i !== index)
+        : [...prev, index]
+    );
+  };
   const advisors = [
     {
       name: "Sebastian Alaric Varela",
@@ -26,7 +36,9 @@ const AdvisorsSection = () => {
         </div>
         
         <div className="flex flex-col md:flex-row justify-center items-center gap-6 md:gap-8 max-w-5xl mx-auto">
-          {advisors.map((advisor, index) => (
+          {advisors.map((advisor, index) => {
+            const isExpanded = expandedCards.includes(index);
+            return (
             <div 
               key={index} 
               className="group relative flex-shrink-0 rounded-2xl border border-teal-200 bg-teal-50/80 overflow-hidden cursor-pointer transition-all duration-300 hover:shadow-lg w-72 h-80 md:w-72 md:h-96"
@@ -44,7 +56,7 @@ const AdvisorsSection = () => {
               </div>
               
               {/* Image - Initially visible */}
-              <div className="absolute inset-0 transition-opacity duration-300">
+              <div className={`absolute inset-0 transition-opacity duration-300 ${isExpanded ? 'md:opacity-100 opacity-0' : 'opacity-100'}`}>
                 <img 
                   src={advisor.image} 
                   alt={advisor.name}
@@ -52,33 +64,59 @@ const AdvisorsSection = () => {
                 />
                 
                 {/* Name and designation over image */}
-                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4 text-white">
+                <div className="absolute bottom-0 left-0 right-0 p-4 text-black"
+                     style={{
+                       background: 'linear-gradient(180deg, transparent 0%, #CDF9EF 100%)',
+                    //    backdropFilter: 'blur(12px)',
+                    //    WebkitBackdropFilter: 'blur(12px)'
+                     }}>
                   <h3 className="text-lg md:text-xl font-semibold mb-1">{advisor.name}</h3>
-                  <p className="text-sm md:text-base font-medium opacity-90">{advisor.position}</p>
-                  
-                  {/* Read more button - visible only on mobile */}
-                  <div className="md:hidden mt-2">
-                    <button className="text-xs bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full border border-white/30 hover:bg-white/30 transition-all">
-                      Read more
-                    </button>
+                  <div className="flex justify-between items-center">
+                    <p className="text-sm md:text-base font-medium opacity-90">{advisor.position}</p>
+                    {/* Read more/less button - Mobile only */}
+                    <div className="md:hidden">
+                      <button 
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          toggleCard(index);
+                        }}
+                        className="text-xs text-gray-800 underline hover:text-teal-700 transition-colors duration-200"
+                      >
+                        {isExpanded ? 'Read less' : 'Read more'}
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
               
-              {/* Text Content - Visible on hover with glassmorphism effect */}
-              <div className="absolute inset-0 p-4 md:p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-center text-left backdrop-blur-md"
+              {/* Text Content - Mobile: Visible when expanded, Desktop: Visible on hover */}
+              <div className={`absolute inset-0 p-4 md:p-6 ${isExpanded ? 'opacity-100 md:opacity-0' : 'opacity-0'} md:group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-center text-left backdrop-blur-lg`}
                    style={{ 
-                     background: 'rgba(205, 249, 239, 0.85)', // Semi-transparent teal overlay
+                     background: 'rgba(205, 249, 239, 0.90)',
                      backdropFilter: 'blur(8px)',
                      WebkitBackdropFilter: 'blur(8px)',
                      border: '1px solid rgba(255, 255, 255, 0.2)'
                    }}>
                 <h3 className="text-lg md:text-xl font-semibold text-gray-900 mb-2 md:mb-3">{advisor.name}</h3>
-                <p className="text-[#559187] font-medium mb-3 md:mb-4 text-sm md:text-base">{advisor.position}</p>
-                <p className="text-gray-800 text-xs md:text-sm leading-relaxed">{advisor.description}</p>
+                <p className="font-medium mb-3 md:mb-4 text-sm md:text-base text-gray-800">{advisor.position}</p>
+                <p className="text-gray-800 text-xs md:text-sm leading-relaxed mb-4">{advisor.description}</p>
+                
+                {/* Read less button in expanded view - Mobile only */}
+                <div className="md:hidden mt-auto flex justify-end">
+                  <button 
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      toggleCard(index);
+                    }}
+                    className="text-xs text-gray-800 underline hover:text-teal-700 transition-colors duration-200"
+                  >
+                    Read less
+                  </button>
+                </div>
               </div>
             </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>

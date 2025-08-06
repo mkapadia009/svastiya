@@ -16,6 +16,7 @@ import RealEstate from './realestate.svg'
 import ConsuGoods from './consugoods.svg'
 import ProfServ from './profserv.svg'
 import LinkedIn from './linkedin.svg'
+import SvastiyaLogoWhite from './Svastiya_tree_white.svg'
 
 export const ImageAssets = {
   Svastiya,
@@ -34,5 +35,6 @@ export const ImageAssets = {
   RealEstate,
   ConsuGoods,
   ProfServ,
-  LinkedIn
+  LinkedIn,
+  SvastiyaLogoWhite
 }

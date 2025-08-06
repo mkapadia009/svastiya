@@ -4,12 +4,18 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Building2, TrendingUp, Coins, Factory, Landmark, ChartBar, Download, ExternalLink } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import InquiryModal from "@/components/formcomponent/inqueryform";
 import Footer from "@/components/footer/footer";
+import { setLoadingShown } from "@/lib/loadingState";
 
 const Knowledge = () => {
   const [open, setOpen] = useState(false)
+  
+  // Mark loading as shown since we're on a different page
+  useEffect(() => {
+    setLoadingShown();
+  }, []);
   const investmentProducts = [
     {
       icon: Building2,
@@ -249,17 +255,17 @@ const Knowledge = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-teal-600 to-teal-700">
+      <section className="py-20 bg-[#F3FBFB]">
         <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-          <h2 className="text-4xl font-bold text-white mb-6">
+          <h2 className="text-4xl font-bold text-teal-600 mb-6">
             Ready to Explore Alternative Investments?
           </h2>
-          <p className="text-xl text-teal-100 mb-8">
+          <p className="text-xl text-teal-600 mb-8">
             Our experts are ready to help you navigate the world of alternative investments 
             and build a diversified portfolio tailored to your goals.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="bg-white text-teal-600 hover:bg-gray-50" onClick={() => setOpen(true)}>
+            <Button size="lg" className="bg-teal-600 text-white hover:bg-teal-700" onClick={() => setOpen(true)}>
               Schedule Consultation
             </Button>
             {/* <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-teal-600">

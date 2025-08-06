@@ -7,8 +7,14 @@ import ValuesSection from "@/components/about/ValuesSection";
 import AdvisorsSection from "@/components/about/AdvisorsSection";
 import PartnersSection from "@/components/about/PartnersSection";
 import Footer from "@/components/footer/footer";
+import { useEffect } from "react";
+import { setLoadingShown } from "@/lib/loadingState";
 
 const About = () => {
+  // Mark loading as shown since we're on a different page
+  useEffect(() => {
+    setLoadingShown();
+  }, []);
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-teal-50">
       <Navigation />

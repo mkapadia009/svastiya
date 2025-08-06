@@ -4,13 +4,19 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { PieChart, Briefcase, Building2, Coins, TrendingUp, Users, Target, Shield, Star, Globe } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import InquiryModal from "@/components/formcomponent/inqueryform";
 import Footer from "@/components/footer/footer";
 import { ImageAssets } from "@/images/imageassets";
+import { setLoadingShown } from "@/lib/loadingState";
 
 const InvestmentAdvisory = () => {
   const [open, setOpen] = useState(false)
+  
+  // Mark loading as shown since we're on a different page
+  useEffect(() => {
+    setLoadingShown();
+  }, []);
   const services = [
     {
       icon: PieChart,
@@ -143,10 +149,38 @@ const InvestmentAdvisory = () => {
             </p>
           </div>
 
-          <div className="flex justify-center">
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-8 max-w-4xl">
+          {/* Mobile: Original grid layout */}
+          <div className="flex justify-center md:hidden">
+            <div className="grid grid-cols-2 gap-4 max-w-4xl">
               {investmentTypes.map((type, index) => (
-                <div key={index} className="text-center rounded-lg bg-white border border-teal-100 hover:border-teal-200 transition-all duration-300 shadow-sm px-8 py-6 md:px-12 md:py-6">
+                <div key={index} className="text-center rounded-lg bg-white border border-teal-100 hover:border-teal-200 transition-all duration-300 shadow-sm px-8 py-6">
+                  <div className="w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center mx-auto mb-2">
+                    <img src={type.image} alt={type.title} className="h-6 w-6" />
+                  </div>
+                  <h3 className="font-semibold text-gray-900 text-lg">{type.title}</h3>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Desktop: Separate rows with centering */}
+          <div className="hidden md:flex flex-col items-center gap-8">
+            {/* First row - 3 items */}
+            <div className="grid grid-cols-3 gap-8 max-w-4xl">
+              {investmentTypes.slice(0, 3).map((type, index) => (
+                <div key={index} className="text-center rounded-lg bg-white border border-teal-100 hover:border-teal-200 transition-all duration-300 shadow-sm px-12 py-6">
+                  <div className="w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center mx-auto mb-2">
+                    <img src={type.image} alt={type.title} className="h-6 w-6" />
+                  </div>
+                  <h3 className="font-semibold text-gray-900 text-lg">{type.title}</h3>
+                </div>
+              ))}
+            </div>
+            
+            {/* Second row - 2 items centered */}
+            <div className="grid grid-cols-2 gap-8 max-w-lg">
+              {investmentTypes.slice(3).map((type, index) => (
+                <div key={index + 3} className="text-center rounded-lg bg-white border border-teal-100 hover:border-teal-200 transition-all duration-300 shadow-sm px-12 py-6">
                   <div className="w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center mx-auto mb-2">
                     <img src={type.image} alt={type.title} className="h-6 w-6" />
                   </div>
@@ -202,16 +236,16 @@ const InvestmentAdvisory = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-teal-600">
+      <section className="py-20 bg-[#FBFDFD]">
         <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-          <h2 className="text-4xl font-bold text-white mb-6">
+          <h2 className="text-4xl font-bold text-teal-600 mb-6">
             Ready to Grow Your Wealth?
           </h2>
-          <p className="text-xl text-teal-100 mb-8">
+          <p className="text-xl text-teal-600 mb-8">
             Let's create a personalized investment strategy that aligns with your financial goals.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" variant="secondary" className="bg-white text-teal-600 hover:bg-gray-100" onClick={() => setOpen(true)}>
+            <Button size="lg" variant="secondary" className="bg-teal-600 text-white hover:bg-teal-700 hover:text-white" onClick={() => setOpen(true)}>
               Schedule Consultation
             </Button>
             {/* <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-teal-600">

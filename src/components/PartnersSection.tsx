@@ -75,7 +75,7 @@ const PartnersSection = () => {
           <CarouselContent className="-ml-2 md:-ml-4">
             {partners.map((partner, index) => (
               <CarouselItem key={index} className="pl-2 md:pl-4 basis-1/2 md:basis-1/3 lg:basis-1/4">
-                <Card className="p-6 bg-white border-gray-200 hover:shadow-md transition-shadow duration-300 flex flex-col items-center text-center h-full">
+                <Card className="p-6 bg-white border-[#CDF9EF]-200 hover:shadow-md transition-shadow duration-300 flex flex-col items-center text-center h-full">
                   <div className="w-16 h-16 bg-gradient-to-br from-teal-100 to-teal-200 rounded-lg flex items-center justify-center mb-4 overflow-hidden">
                     <img 
                       src={`https://images.unsplash.com/${partner.logo}?w=64&h=64&fit=crop&crop=center`}
