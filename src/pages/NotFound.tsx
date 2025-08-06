@@ -1,8 +1,14 @@
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
+import { setLoadingShown } from "@/lib/loadingState";
 
 const NotFound = () => {
   const location = useLocation();
+
+  // Mark loading as shown since we're on a different page
+  useEffect(() => {
+    setLoadingShown();
+  }, []);
 
   useEffect(() => {
     console.error(
