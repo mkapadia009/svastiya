@@ -92,7 +92,6 @@ const InvestmentAdvisory = () => {
             <Button size="lg" variant="outline">
               Download Investment Guide
             </Button>
-            <InquiryModal open={open} handleClose={() => setOpen(false)} />
           </div>
         </div>
       </section>
@@ -254,7 +253,8 @@ const InvestmentAdvisory = () => {
           </div>
         </div>
       </section>
-      <Footer/>
+      <Footer onContactClick={() => setOpen(true)} />
+      <InquiryModal open={open} handleClose={() => setOpen(false)} />
     </div>
   );
 };

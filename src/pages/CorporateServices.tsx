@@ -227,7 +227,7 @@ const CorporateServices = () => {
           </div>
         </div>
       </section>
-      <Footer/>
+      <Footer onContactClick={() => setOpen(true)} />
     </div>
   );
 };
