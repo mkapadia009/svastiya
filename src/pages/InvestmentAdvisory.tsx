@@ -178,9 +178,9 @@ const InvestmentAdvisory = () => {
             </div>
             
             {/* Second row - 2 items centered */}
-            <div className="grid grid-cols-2 gap-8 max-w-lg">
+            <div className="grid grid-cols-2 gap-8 max-w-2xl">
               {investmentTypes.slice(3).map((type, index) => (
-                <div key={index + 3} className="text-center rounded-lg bg-white border border-teal-100 hover:border-teal-200 transition-all duration-300 shadow-sm px-12 py-6">
+                <div key={index + 3} className="text-center rounded-lg bg-white border border-teal-100 hover:border-teal-200 transition-all duration-300 shadow-sm px-6 py-6">
                   <div className="w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center mx-auto mb-2">
                     <img src={type.image} alt={type.title} className="h-6 w-6" />
                   </div>
