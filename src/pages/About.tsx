@@ -7,10 +7,12 @@ import ValuesSection from "@/components/about/ValuesSection";
 import AdvisorsSection from "@/components/about/AdvisorsSection";
 import PartnersSection from "@/components/about/PartnersSection";
 import Footer from "@/components/footer/footer";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { setLoadingShown } from "@/lib/loadingState";
+import InquiryModal from "@/components/formcomponent/inqueryform";
 
 const About = () => {
+  const [open, setOpen] = useState(false);
   // Mark loading as shown since we're on a different page
   useEffect(() => {
     setLoadingShown();
@@ -24,7 +26,8 @@ const About = () => {
       <ValuesSection />
       <AdvisorsSection />
       <PartnersSection />
-      <Footer/>
+      <Footer onContactClick={() => setOpen(true)} />
+      <InquiryModal open={open} handleClose={() => setOpen(false)} />
     </div>
   );
 };

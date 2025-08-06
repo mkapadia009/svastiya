@@ -189,7 +189,6 @@ const Knowledge = () => {
                       Download Factsheet
                       <Download className="ml-2 h-4 w-4" />
                     </Button>
-                    <InquiryModal open={open} handleClose={() => setOpen(false)} />
                   </div>
                 </CardContent>
               </Card>
@@ -265,7 +264,7 @@ const Knowledge = () => {
             and build a diversified portfolio tailored to your goals.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="bg-teal-600 text-white hover:bg-teal-700" onClick={() => setOpen(true)}>
+            <Button size="lg" variant="secondary" className="bg-teal-600 text-white hover:bg-teal-700 hover:text-white" onClick={() => setOpen(true)}>
               Schedule Consultation
             </Button>
             {/* <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-teal-600">
@@ -274,7 +273,8 @@ const Knowledge = () => {
           </div>
         </div>
       </section>
-      <Footer/>
+      <Footer onContactClick={() => setOpen(true)} />
+      <InquiryModal open={open} handleClose={() => setOpen(false)} />
     </div>
   );
 };

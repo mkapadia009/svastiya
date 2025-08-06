@@ -208,9 +208,12 @@ const Index = () => {
                 <Link to="/knowledge" state={{ fromRouter: true }} className="block text-white hover:font-semibold transition-colors">
                   Knowledge Hub
                 </Link>
-                <a href="#" className="block text-white hover:font-semibold transition-colors">
+                <button 
+                  onClick={() => setOpen(true)} 
+                  className="block text-white hover:font-semibold transition-colors text-left"
+                >
                   Contact
-                </a>
+                </button>
               </div>
             </div>
           </div>
@@ -220,6 +223,7 @@ const Index = () => {
           </div>
         </div>
       </footer>
+      <InquiryModal open={open} handleClose={() => setOpen(false)} />
     </div>
   );
 };

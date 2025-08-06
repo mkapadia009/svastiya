@@ -5,7 +5,11 @@ import { Link } from 'react-router-dom'
 import { Mail, Phone, MapPin } from 'lucide-react'
 import { ImageAssets } from '@/images/imageassets'
 
-const Footer = () => {
+interface FooterProps {
+  onContactClick?: () => void;
+}
+
+const Footer = ({ onContactClick }: FooterProps) => {
   return (
     <footer className="bg-teal-600 text-white py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -47,9 +51,12 @@ const Footer = () => {
               <Link to="/knowledge" className="block text-white hover:font-semibold transition-colors">
                 Knowledge Hub
               </Link>
-              <Link to="/contact" className="block text-white hover:font-semibold transition-colors">
+              <button 
+                onClick={onContactClick} 
+                className="block text-white hover:font-semibold transition-colors text-left"
+              >
                 Contact
-              </Link>
+              </button>
             </div>
           </div>
         </div>
